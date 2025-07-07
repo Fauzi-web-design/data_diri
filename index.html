@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fauzi Bahtiar - Portofolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Loading Animation */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .loading::before {
+      content: '';
+      width: 50px;
+      height: 50px;
+      border: 3px solid #2d89ef;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    header {
+      background: linear-gradient(135deg, #2d89ef 0%, #1565c0 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #fff, #2d89ef);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(45, 137, 239, 0.1), transparent);
+      transition: 0.5s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    }
+
+    .card:hover::before {
+      left: 100%;
+    }
+
+    .card h2 {
+      color: #2d89ef;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+      position: relative;
+    }
+
+    .card h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, #2d89ef, #1565c0);
+    }
+
+    .card p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .contact-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .contact-icon {
+      font-size: 2rem;
+      color: #2d89ef;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(45, 137, 239, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-icon {
+      background: #2d89ef;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #2d89ef 0%, #1565c0 100%);
+      color: white;
+      margin-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23fff" fill-opacity="0.1" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,133.3C672,128,768,160,864,170.7C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat center center;
+      opacity: 0.1;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 40px 20px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      section {
+        padding: 40px 20px;
+      }
+
+      .card {
+        padding: 30px;
+      }
+
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Parallax Effect */
+    .parallax {
+      position: relative;
+      height: 300px;
+      background: linear-gradient(135deg, #2d89ef 0%, #1565c0 100%);
+      margin: 40px 0;
+      overflow: hidden;
+    }
+
+    .parallax::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23fff" fill-opacity="0.1" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,133.3C672,128,768,160,864,170.7C960,181,1056,171,1152,160C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat center center;
+      opacity: 0.1;
+    }
+
+    .parallax-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 20px;
+      color: white;
+    }
+
+    .parallax-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #fff, #2d89ef);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .parallax-content p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="loading"></div>
+  <header>
+    <h1>Fauzi Bahtiar</h1>
+    <p>Mahasiswa Teknik Informatika</p>
+  </header>
+
+  <section>
+    <div class="parallax">
+      <div class="parallax-content">
+        <h2>Data Pribadi</h2>
+        <p><strong>NIM:</strong> 19230378</p>
+        <p><strong>Alamat:</strong> Perumahan Puri Kosambi Blok P No 16, Desa Duren, Kab. Karawang</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Tentang Saya</h2>
+      <p>Saya adalah mahasiswa yang memiliki minat besar dalam dunia pemrograman, desain web, dan teknologi informasi. Saya senang belajar hal baru dan mengembangkan keterampilan di bidang IT.</p>
+      <div class="skills">
+        <div class="skill-item">
+          <i class="fas fa-code"></i>
+          <span>Pemrograman</span>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-paint-brush"></i>
+          <span>Desain Web</span>
+        </div>
+        <div class="skill-item">
+          <i class="fas fa-laptop-code"></i>
+          <span>Teknologi Informasi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Kontak</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope contact-icon"></i>
+          <p>Email: fauziiengx01@email.com</p>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone contact-icon"></i>
+          <p>No HP: 089655856785</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Fauzi Bahtiar
+  </footer>
+  <script>
+    // Remove loading animation when page is loaded
+    window.addEventListener('load', function() {
+      const loading = document.querySelector('.loading');
+      loading.style.opacity = '0';
+      setTimeout(() => {
+        loading.style.display = 'none';
+      }, 500);
+    });
+  </script>
+  </body>
+</html>
